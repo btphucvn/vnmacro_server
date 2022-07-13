@@ -1,7 +1,6 @@
 import StockService from "../services/StockService";
 
 let getAllStock= async(req,res)=>{
-    console.log("bbbbb");
     try{
         let data = await StockService.getAllStockService();
         return res.status(200).json(data);

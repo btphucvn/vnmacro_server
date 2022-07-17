@@ -6,7 +6,10 @@ import MarketRatioController from "../controllers/MarketRatioController";
 import Business2Controller from "../controllers/Business2Controller";
 import MarketNameController from "../controllers/MarketNameController";
 import StockMacroController from "../controllers/StockMacroController/StockMacroController";
-import QuantityController from "../controllers/QuantityController";
+import MacroTypeController from "../controllers/MacroTypeController";
+
+import TableController from "../controllers/TableController";
+
 let router = express.Router();
 let initWebRoutes = (app) => {
 
@@ -22,7 +25,14 @@ let initWebRoutes = (app) => {
     router.get("/api/get-all-select", StockMacroController.getAllSelect);
     router.get("/api/get-finished-profit-plan", StockMacroController.getFinishedProfitPlan);
 
-    router.get("/api/get-all-quantites", QuantityController.getAllQuantity);
+
+    router.get("/api/get-macro-type", MacroTypeController.getMacroTypeByKeyIDMacro);
+
+
+
+    router.get("/api/get-table-by-idmacrotype", TableController.getTableByIDMacroType);
+
+
 
 
     return app.use("/", router);

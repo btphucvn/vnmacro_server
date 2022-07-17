@@ -3,7 +3,7 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class Quantity extends Model {
+    class Row_Data_Level2_Value extends Model {
         /**
          * Helper method for defining associations.
          * This method is not a part of Sequelize lifecycle.
@@ -11,25 +11,25 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association herenpx sequelize-cli db:migrate
+            Row_Data_Level2_Value.belongsTo(models.Row_Data_Level2, { foreignKey: 'idRowDataLevel2'});
 
 
         }
     };
-    Quantity.init({
+    Row_Data_Level2_Value.init({
 
-        keyQuantity: {
-            type: DataTypes.STRING,
+        id: {
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
         },
-
-        title: DataTypes.STRING,
-        idDetail: DataTypes.INTEGER,
-
+        idRowDataLevel2: DataTypes.INTEGER,
+        value: DataTypes.DOUBLE,
+        timeStamp: DataTypes.DOUBLE,
 
     }, {
         sequelize,
-        modelName: 'Quantity',
+        modelName: 'Row_Data_Level2_Value',
     });
-    return Quantity;
+    return Row_Data_Level2_Value;
 };

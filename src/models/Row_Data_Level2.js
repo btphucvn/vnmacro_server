@@ -15,6 +15,8 @@ module.exports = (sequelize, DataTypes) => {
 
             Row_Data_Level2.hasMany(models.Row_Data_Level2_Value, { foreignKey: 'idRowDataLevel2', as: 'data' });
 
+            Row_Data_Level2.hasMany(models.Row_Data_Level3, { foreignKey: 'idRowDataLevel2', as: 'rows' });
+
 
         }
     };
@@ -26,8 +28,6 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
         },
         keyID: DataTypes.STRING,
-        valueType: DataTypes.STRING,
-        dateType: DataTypes.STRING,
         unit: DataTypes.STRING,
         stt: DataTypes.INTEGER,
         idRowDataLevel1: DataTypes.INTEGER,

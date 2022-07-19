@@ -26,8 +26,6 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
         },
         keyID: DataTypes.STRING,
-        valueType: DataTypes.STRING,
-        dateType: DataTypes.STRING,
         unit: DataTypes.STRING,
         stt: DataTypes.INTEGER,
 

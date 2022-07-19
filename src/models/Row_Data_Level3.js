@@ -3,7 +3,7 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class Table extends Model {
+    class Row_Data_Level3 extends Model {
         /**
          * Helper method for defining associations.
          * This method is not a part of Sequelize lifecycle.
@@ -11,12 +11,14 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association herenpx sequelize-cli db:migrate
-            Table.hasMany(models.Row_Data_Level1, { foreignKey: 'idTable', as: 'rows' });
 
+            Row_Data_Level3.belongsTo(models.Row_Data_Level3, { foreignKey: 'idRowDataLevel2' });
+
+            Row_Data_Level3.hasMany(models.Row_Data_Level3_Value, { foreignKey: 'idRowDataLevel3', as: 'data' });
 
         }
     };
-    Table.init({
+    Row_Data_Level3.init({
 
         id: {
             type: DataTypes.INTEGER,
@@ -24,14 +26,13 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
         },
         keyID: DataTypes.STRING,
+        unit: DataTypes.STRING,
         stt: DataTypes.INTEGER,
-        valueType: DataTypes.STRING,
-        dateType: DataTypes.STRING,
-        idMacroType:DataTypes.INTEGER,
+        idRowDataLevel2: DataTypes.INTEGER,
 
     }, {
         sequelize,
-        modelName: 'Table',
+        modelName: 'Row_Data_Level3',
     });
-    return Table;
+    return Row_Data_Level3;
 };

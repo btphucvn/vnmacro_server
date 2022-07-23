@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
 
             Row_Data_Level1.hasMany(models.Row_Data_Level2, { foreignKey: 'idRowDataLevel1', as: 'rows' });
 
+            Row_Data_Level1.hasOne(models.AllKey,{foreignKey:'keyID',sourceKey:'keyID',as: 'names'})
         }
     };
     Row_Data_Level1.init({

@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association herenpx sequelize-cli db:migrate
 
+            Macro_Type.hasMany(models.Table, { foreignKey: 'idMacroType', as: 'valueTypes' });
 
         }
     };

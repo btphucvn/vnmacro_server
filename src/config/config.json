@@ -1,11 +1,11 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
+    "username": "postgres",
+    "password": "Thanhphuc123@",
     "database": "dbvnmacro",
     "host": "127.0.0.1",
-    "port": "3307",
-    "dialect": "mysql",
+    "port": "3308",
+    "dialect": "postgres",
     "logging": false,
     "timezone": "+07:00",
     "query": {

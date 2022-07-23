@@ -30,9 +30,10 @@ let initWebRoutes = (app) => {
 
 
 
-    router.get("/api/get-table-by-idmacrotype", TableController.getTableByIDMacroType);
+    router.get("/api/get-table-by-keyidmacrotype", TableController.getTableByKeyIDMacroType);
 
-
+    
+    router.get("/api/get-value-type-by-keyidmacrotype", MacroTypeController.getValueTypeByKeyIDMacro);
 
 
     return app.use("/", router);

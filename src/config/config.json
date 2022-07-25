@@ -13,12 +13,17 @@
     }
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "port": "3307",
-    "dialect": "mysql"
+    "username": "postgres",
+    "password": "Thanhphuc123@",
+    "database": "dbvnmacro",
+    "host": "localhost",
+    "port": "3308",
+    "dialect": "postgres",
+    "logging": false,
+    "timezone": "+07:00",
+    "query": {
+      "raw": true
+    }
   },
   "production": {
     "username": "root",

@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
     console.log(process.env.URL_REACT);
     console.log(process);
 
-    res.setHeader('Access-Control-Allow-Origin', "http://localhost:3000");
+    res.setHeader('Access-Control-Allow-Origin', process.env.URL_REACT);
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 

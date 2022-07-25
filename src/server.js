@@ -16,8 +16,8 @@ let app = express();
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    console.log(process.env.URL_REACT);
-    console.log(process);
+    //console.log(process.env.URL_REACT);
+    //console.log(process);
 
     res.setHeader('Access-Control-Allow-Origin', process.env.URL_REACT);
     // Request methods you wish to allow
@@ -48,6 +48,6 @@ connectDB();
 
 let port = process.env.port || 9000;
 app.listen(port, () => {
-    console.log(process.env.URL_REACT);
+    //console.log(process.env.URL_REACT);
     console.log("Backend Nodejs is running on the port: " + port);
 })

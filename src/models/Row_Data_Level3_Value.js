@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
 
-            Row_Data_Level3_Value.belongsTo(models.Row_Data_Level3, { foreignKey: 'idRowDataLevel3'});
+            Row_Data_Level3_Value.belongsTo(models.Row_Data_Level3, { foreignKey: 'id_row_data_level3'});
 
 
         }
@@ -30,6 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'Row_Data_Level3_Value',
+        tableName: 'row_data_level3_values',
+
     });
     return Row_Data_Level3_Value;
 };

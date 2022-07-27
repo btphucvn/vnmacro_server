@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association herenpx sequelize-cli db:migrate
             Row_Data_Level1.belongsTo(models.Row_Data_Level1, { foreignKey: 'idTable'});
-            Row_Data_Level1.hasMany(models.Row_Data_Level1_Value, { foreignKey: 'idRowDataLevel1', as: 'data' });
+            Row_Data_Level1.hasMany(models.Row_Data_Level1_Value, { foreignKey: 'id_row_data_level1', as: 'data' });
 
-            Row_Data_Level1.hasMany(models.Row_Data_Level2, { foreignKey: 'idRowDataLevel1', as: 'rows' });
+            Row_Data_Level1.hasMany(models.Row_Data_Level2, { foreignKey: 'id_row_data_level1', as: 'rows' });
 
-            Row_Data_Level1.hasOne(models.AllKey,{foreignKey:'keyID',sourceKey:'keyID',as: 'names'})
+            Row_Data_Level1.hasOne(models.AllKey,{foreignKey:'key_id',sourceKey:'key_id',as: 'names'})
         }
     };
     Row_Data_Level1.init({
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
         },
-        keyID: DataTypes.STRING,
+        key_id: DataTypes.STRING,
         unit: DataTypes.STRING,
         stt: DataTypes.INTEGER,
 
@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'Row_Data_Level1',
+        tableName: 'row_data_level1s',
     });
     return Row_Data_Level1;
 };

@@ -6,23 +6,23 @@ import RowDataLevel1ValueService from '../services/RowDataLevel1ValueService';
 import MacroTypeService from "../services/MacroTypeService";
 
 import ToolDate from '../utils/ToolDate'
-let getTableByKeyIDMacroType = (keyIDMacroType, valueType) => {
+let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
     return new Promise(async (resolve, reject) => {
-        let macroTypes = await MacroTypeService.getIDMacroByKeyID(keyIDMacroType);
-        let idMacroType;
+        let macroTypes = await MacroTypeService.getIDMacroByKeyID(key_id_macro_type);
+        let id_macro_type;
         let error={};
         error.errCode = 1;
         error.errMessage = "Wrong keyID";
         if(macroTypes)
         {
-            idMacroType = macroTypes.id;
+            id_macro_type = macroTypes.id;
         }
         else{
             resolve(error);
         }
         try {
             let tables = await db.Table.findAll({
-                where: { idMacroType: idMacroType, valueType: valueType },
+                where: { id_macro_type: id_macro_type, value_type: value_type },
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
                 },
@@ -30,7 +30,7 @@ let getTableByKeyIDMacroType = (keyIDMacroType, valueType) => {
                     {
                         model: db.AllKey,
                         as: 'names',
-                        attributes: ['nameVi'],
+                        attributes: ['name_vi'],
                     },
 
                     {
@@ -44,7 +44,7 @@ let getTableByKeyIDMacroType = (keyIDMacroType, valueType) => {
                             {
                                 model: db.AllKey,
                                 as: 'names',
-                                attributes: ['nameVi'],
+                                attributes: ['name_vi'],
                             },
 
                             {
@@ -56,7 +56,7 @@ let getTableByKeyIDMacroType = (keyIDMacroType, valueType) => {
                                     {
                                         model: db.AllKey,
                                         as: 'names',
-                                        attributes: ['nameVi'],
+                                        attributes: ['name_vi'],
                                     },
                                     {
                                         model: db.Row_Data_Level3,
@@ -68,7 +68,7 @@ let getTableByKeyIDMacroType = (keyIDMacroType, valueType) => {
                                             {
                                                 model: db.AllKey,
                                                 as: 'names',
-                                                attributes: ['nameVi'],
+                                                attributes: ['name_vi'],
                                             },
                                         ]
                                     }]
@@ -117,13 +117,13 @@ let getTableByKeyIDMacroType = (keyIDMacroType, valueType) => {
                         for (let row_level3 of row_level2.rows) {
                             let data = await RowDataLevel3ValueService.getDataByIdRowDataLevel3(row_level3.id);
                             row_level3.data = data;
-                            row_level3.idChild = itemTable.keyID + "_" + row_level1.keyID + "_" + row_level2.keyID + "_" + row_level3.keyID;
+                            row_level3.idChild = itemTable.key_id + "_" + row_level1.key_id + "_" + row_level2.key_id + "_" + row_level3.key_id;
                             childRowLevel1.push(row_level3.idChild);
                         }
-                        row_level2.idChild = itemTable.keyID + "_" + row_level1.keyID + "_" + row_level2.keyID;
+                        row_level2.idChild = itemTable.key_id + "_" + row_level1.key_id + "_" + row_level2.key_id;
                         childRowLevel1.push(row_level2.idChild);
                     }
-                    row_level1.idChild = itemTable.keyID + "_" + row_level1.keyID;
+                    row_level1.idChild = itemTable.key_id + "_" + row_level1.key_id;
                     row_level1.childRow = childRowLevel1;
                 }
                 let header = [];
@@ -141,11 +141,11 @@ let getTableByKeyIDMacroType = (keyIDMacroType, valueType) => {
 
     })
 }
-let getTableByIDMacroType2 = (idMacroType, valueType) => {
+let getTableByIDMacroType2 = (id_macro_type, valueType) => {
     return new Promise(async (resolve, reject) => {
         try {
             let tables = await db.Table.findAll({
-                where: { idMacroType: idMacroType, valueType: valueType },
+                where: { id_macro_type: id_macro_type, valueType: valueType },
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
                 },
@@ -153,7 +153,7 @@ let getTableByIDMacroType2 = (idMacroType, valueType) => {
                     {
                         model: db.AllKey,
                         as: 'names',
-                        attributes: ['nameVi'],
+                        attributes: ['name_vi'],
                     },
 
                     {
@@ -167,7 +167,7 @@ let getTableByIDMacroType2 = (idMacroType, valueType) => {
                             {
                                 model: db.AllKey,
                                 as: 'names',
-                                attributes: ['nameVi'],
+                                attributes: ['name_vi'],
                             },
                             {
                                 model: db.Row_Data_Level1_Value, as: 'data',
@@ -183,7 +183,7 @@ let getTableByIDMacroType2 = (idMacroType, valueType) => {
                                     {
                                         model: db.AllKey,
                                         as: 'names',
-                                        attributes: ['nameVi'],
+                                        attributes: ['name_vi'],
                                     },
                                     {
                                         model: db.Row_Data_Level2_Value, as: 'data',
@@ -199,7 +199,7 @@ let getTableByIDMacroType2 = (idMacroType, valueType) => {
                                             {
                                                 model: db.AllKey,
                                                 as: 'names',
-                                                attributes: ['nameVi'],
+                                                attributes: ['name_vi'],
                                             },
                                         ]
                                     }]
@@ -253,15 +253,15 @@ let getTableByIDMacroType2 = (idMacroType, valueType) => {
                         for (let row_level3 of row_level2.rows) {
                             let data = await RowDataLevel3ValueService.getDataByIdRowDataLevel3(row_level3.id);
                             row_level3.data = data;
-                            row_level3.idChild = itemTable.keyID + "_" + row_level1.keyID + "_" + row_level2.keyID + "_" + row_level3.keyID;
+                            row_level3.idChild = itemTable.key_id + "_" + row_level1.key_id + "_" + row_level2.key_id + "_" + row_level3.key_id;
                             childRowLevel2.push(row_level3.idChild);
                             childRowLevel1.push(row_level3.idChild);
                         }
                         row_level2.childRow = childRowLevel2;
-                        row_level2.idChild = itemTable.keyID + "_" + row_level1.keyID + "_" + row_level2.keyID;
+                        row_level2.idChild = itemTable.key_id + "_" + row_level1.key_id + "_" + row_level2.key_id;
                         childRowLevel1.push(row_level2.idChild);
                     }
-                    row_level1.idChild = itemTable.keyID + "_" + row_level1.keyID;
+                    row_level1.idChild = itemTable.key_id + "_" + row_level1.key_id;
                     row_level1.childRow = childRowLevel1;
                 }
             }

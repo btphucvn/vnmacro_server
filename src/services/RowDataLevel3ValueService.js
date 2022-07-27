@@ -1,11 +1,11 @@
 import db from '../models/index';
 
 
-let getDataByIdRowDataLevel3 = (idRowDataLevel3) => {
+let getDataByIdRowDataLevel3 = (id_row_data_level3) => {
     return new Promise(async (resolve, reject) => {
         try {
             let datas = db.Row_Data_Level3_Value.findAll({
-                where: { idRowDataLevel3: idRowDataLevel3},
+                where: { id_row_data_level3: id_row_data_level3},
                 attributes: ['timeStamp', 'value'],
                 order:[
                     ['timeStamp','DESC']

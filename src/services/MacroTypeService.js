@@ -2,7 +2,7 @@
 import db from '../models/index';
 
 
-let getMacroTypeByKeyIDMacro = (keyIDMacro) => {
+let getMacroTypeByKeyIDMacro = (key_id_macro) => {
     return new Promise(async (resolve, reject) => {
         try {
 
@@ -10,7 +10,7 @@ let getMacroTypeByKeyIDMacro = (keyIDMacro) => {
 
             const macroTypes = await db.Macro_Type.findAll({
                 where: {
-                    keyIDMacro: keyIDMacro,
+                    key_id_macro: key_id_macro,
                 },
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
@@ -32,14 +32,14 @@ let getMacroTypeByKeyIDMacro = (keyIDMacro) => {
     })
 }
 
-let getValueTypeByKeyIDMacro = (keyIDMacro) => {
+let getValueTypeByKeyIDMacro = (key_id_macro) => {
     return new Promise(async (resolve, reject) => {
         try {
 
 
             const macroTypes = await db.Macro_Type.findAll({
                 where: {
-                    keyID: keyIDMacro,
+                    key_id: key_id_macro,
                 },
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
@@ -47,26 +47,26 @@ let getValueTypeByKeyIDMacro = (keyIDMacro) => {
                 include: [
                     {
                         model: db.Table,
-                        as: 'valueTypes',
+                        as: 'value_types',
                         attributes: {
                             exclude: ['createdAt', 'updatedAt'],
-                            
+
                         },
                     }
                 ],
                 raw: false,
-                nest:true,
+                nest: true,
             });
 
             let result = {};
             result.errCode = 0;
             result.data = [];
             for (let macroType of macroTypes) {
-                for (let valueType of macroType.valueTypes) {
-                    result.data.push(valueType.valueType)
+                for (let valueType of macroType.value_types) {
+                    result.data.push(valueType.value_type)
                 }
             }
-            result.data= result.data.filter((v, i, a) => a.indexOf(v) === i);
+            result.data = result.data.filter((v, i, a) => a.indexOf(v) === i);
             resolve(result);
         } catch (e) {
             reject(e);
@@ -75,15 +75,15 @@ let getValueTypeByKeyIDMacro = (keyIDMacro) => {
     })
 }
 
-let getIDMacroByKeyID = (keyID) => {
-    
+let getIDMacroByKeyID = (key_id) => {
+
     return new Promise(async (resolve, reject) => {
         try {
 
 
             const macroTypes = await db.Macro_Type.findOne({
                 where: {
-                    keyID: keyID,
+                    key_id: key_id,
                 },
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
@@ -102,7 +102,7 @@ let getIDMacroByKeyID = (keyID) => {
 
 module.exports = {
     getMacroTypeByKeyIDMacro: getMacroTypeByKeyIDMacro,
-    getIDMacroByKeyID:getIDMacroByKeyID,
-    getValueTypeByKeyIDMacro:getValueTypeByKeyIDMacro
+    getIDMacroByKeyID: getIDMacroByKeyID,
+    getValueTypeByKeyIDMacro: getValueTypeByKeyIDMacro
 
 }

@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association herenpx sequelize-cli db:migrate
-            AllKey.belongsTo(models.Row_Data_Level1, { foreignKey: 'keyID',targetKey:'keyID'});
-            AllKey.belongsTo(models.Row_Data_Level2, { foreignKey: 'keyID',targetKey:'keyID'});
-            AllKey.belongsTo(models.Row_Data_Level3, { foreignKey: 'keyID',targetKey:'keyID'});
-            AllKey.belongsTo(models.Table, { foreignKey: 'keyID',targetKey:'keyID'});
+            AllKey.belongsTo(models.Row_Data_Level1, { foreignKey: 'key_id',targetKey:'key_id'});
+            AllKey.belongsTo(models.Row_Data_Level2, { foreignKey: 'key_id',targetKey:'key_id'});
+            AllKey.belongsTo(models.Row_Data_Level3, { foreignKey: 'key_id',targetKey:'key_id'});
+            AllKey.belongsTo(models.Table, { foreignKey: 'key_id',targetKey:'key_id'});
 
         }
     };
@@ -25,13 +25,14 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
         },
-        keyID: DataTypes.STRING,
-        nameVi: DataTypes.STRING,
+        key_id: DataTypes.STRING,
+        name_vi: DataTypes.STRING,
 
 
     }, {
         sequelize,
         modelName: 'AllKey',
+        tableName: 'allkeys'
     });
     return AllKey;
 };

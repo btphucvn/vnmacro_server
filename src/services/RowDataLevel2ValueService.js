@@ -4,7 +4,7 @@ import db from '../models/index';
 let getDataByIdRowDataLevel2 = (id_row_data_level2) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let datas = db.Row_Data_Level2_Value.findAll({
+            let datas = await db.Row_Data_Level2_Value.findAll({
                 where: { id_row_data_level2: id_row_data_level2},
                 attributes: ['timeStamp', 'value'],
                 order:[
@@ -13,6 +13,12 @@ let getDataByIdRowDataLevel2 = (id_row_data_level2) => {
                 raw: false,
                 nest: true,
             });
+            // if (datas!=null) {
+            //     for (let data of datas) {
+            //         data.timeStamp = parseFloat(data.timeStamp);
+            //         data.value = parseFloat(data.value);
+            //     }
+            // }
             resolve(datas);
         } catch (e) {
             reject(null);

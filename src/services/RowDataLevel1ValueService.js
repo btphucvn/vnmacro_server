@@ -13,6 +13,15 @@ let getDataByIdRowDataLevel1 = (id_row_data_level1) => {
                 raw: false,
                 nest: true,
             });
+            //datas = JSON.stringify(datas);
+            //console.log(datas)
+            // datas = JSON.parse(datas);
+            // if (datas=!null) {
+            //     for (let data of datas) {
+            //         data.timeStamp = parseFloat(data.timeStamp);
+            //         data.value = parseFloat(data.value);
+            //     }
+            // }
             resolve(datas);
         } catch (e) {
             reject(null);

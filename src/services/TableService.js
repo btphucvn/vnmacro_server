@@ -10,14 +10,13 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
     return new Promise(async (resolve, reject) => {
         let macroTypes = await MacroTypeService.getIDMacroByKeyID(key_id_macro_type);
         let id_macro_type;
-        let error={};
+        let error = {};
         error.errCode = 1;
         error.errMessage = "Wrong keyID";
-        if(macroTypes)
-        {
+        if (macroTypes) {
             id_macro_type = macroTypes.id;
         }
-        else{
+        else {
             resolve(error);
         }
         try {
@@ -97,7 +96,7 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
             });
             tables = JSON.stringify(tables);
             tables = JSON.parse(tables);
-            
+
             // không sử dụng eager loading vì load quá lâu
             // duyệt từng table
             for (let itemTable of tables) {
@@ -106,17 +105,30 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
                 for (let row_level1 of itemTable.rows) {
                     //vào row level2
                     row_level1.data = await RowDataLevel1ValueService.getDataByIdRowDataLevel1(row_level1.id);
+                    for (let data of row_level1.data) {
+                        data.timeStamp = parseFloat(data.timeStamp);
+                        data.value = parseFloat(data.value);
+                    }
                     if (row_level1.data.length > headerData.length) { headerData = row_level1.data }
+                    row_level1.data = convertToArrayHighChartData(row_level1.data);
                     let childRowLevel1 = [];
                     for (let row_level2 of row_level1.rows) {
 
                         row_level2.data = await RowDataLevel2ValueService.getDataByIdRowDataLevel2(row_level2.id);
+                        for (let data of row_level2.data) {
+                            data.timeStamp = parseFloat(data.timeStamp);
+                            data.value = parseFloat(data.value);
+                        }
                         if (row_level2.data.length > headerData.length) { headerData = row_level2.data }
-
+                        row_level2.data = convertToArrayHighChartData(row_level2.data);
                         //vào row level3
                         for (let row_level3 of row_level2.rows) {
-                            let data = await RowDataLevel3ValueService.getDataByIdRowDataLevel3(row_level3.id);
-                            row_level3.data = data;
+                            row_level3.data = await RowDataLevel3ValueService.getDataByIdRowDataLevel3(row_level3.id);
+                            for (let data of row_level3.data) {
+                                data.timeStamp = parseFloat(data.timeStamp);
+                                data.value = parseFloat(data.value);
+                            }
+                            row_level3.data = convertToArrayHighChartData(row_level3.data);
                             row_level3.idChild = itemTable.key_id + "_" + row_level1.key_id + "_" + row_level2.key_id + "_" + row_level3.key_id;
                             childRowLevel1.push(row_level3.idChild);
                         }
@@ -141,6 +153,22 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
 
     })
 }
+
+let convertToArrayHighChartData = (data) => {
+    data = JSON.stringify(data);
+    data = JSON.parse(data);
+    let result = [];
+    for (let item of data) {
+        let arrItem = [];
+        arrItem.push(item.timeStamp);
+        arrItem.push(item.value);
+        result.push(arrItem);
+    }
+
+    return result;
+}
+
+
 let getTableByIDMacroType2 = (id_macro_type, valueType) => {
     return new Promise(async (resolve, reject) => {
         try {

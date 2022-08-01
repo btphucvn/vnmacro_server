@@ -23,13 +23,14 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
         },
 
-        englishName: DataTypes.STRING,
-        vietnameseName: DataTypes.STRING,
-
+        name_en: DataTypes.STRING,
+        name_vi: DataTypes.STRING,
+        id_business1: DataTypes.INTEGER,
 
     }, {
         sequelize,
         modelName: 'Business2',
+        tableName: 'business2s'
     });
     return Business2;
 };

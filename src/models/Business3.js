@@ -3,7 +3,7 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class Table extends Model {
+    class Business3 extends Model {
         /**
          * Helper method for defining associations.
          * This method is not a part of Sequelize lifecycle.
@@ -11,32 +11,26 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association herenpx sequelize-cli db:migrate
-            Table.hasMany(models.Row_Data_Level1, { foreignKey: 'id_table', as: 'rows' });
 
-            Table.hasOne(models.AllKey,{foreignKey:'key_id',sourceKey:'key_id',as: 'names'});
-            
-            Table.belongsTo(models.Macro_Type, { foreignKey: 'id_macro_type' });
 
         }
     };
-    Table.init({
+    Business3.init({
 
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
         },
-        key_id: DataTypes.STRING,
-        stt: DataTypes.INTEGER,
-        value_type: DataTypes.STRING,
-        date_type: DataTypes.STRING,
-        id_macro_type:DataTypes.INTEGER,
+
+        name_en: DataTypes.STRING,
+        name_vi: DataTypes.STRING,
+        id_Business3: DataTypes.INTEGER,
 
     }, {
         sequelize,
-        modelName: 'Table',
-        tableName: 'tables',
-
+        modelName: 'Business3',
+        tableName: 'business3s'
     });
-    return Table;
+    return Business3;
 };

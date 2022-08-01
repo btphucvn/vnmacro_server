@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         idRowDataLevel3: DataTypes.INTEGER,
         value: DataTypes.DOUBLE,
-        timeStamp: DataTypes.DOUBLE,
+        timestamp: DataTypes.DOUBLE,
 
     }, {
         sequelize,

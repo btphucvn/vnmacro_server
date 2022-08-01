@@ -106,7 +106,7 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
                     //vào row level2
                     row_level1.data = await RowDataLevel1ValueService.getDataByIdRowDataLevel1(row_level1.id);
                     for (let data of row_level1.data) {
-                        data.timeStamp = parseFloat(data.timeStamp);
+                        data.timestamp = parseFloat(data.timestamp);
                         data.value = parseFloat(data.value);
                     }
                     if (row_level1.data.length > headerData.length) { headerData = row_level1.data }
@@ -116,7 +116,7 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
 
                         row_level2.data = await RowDataLevel2ValueService.getDataByIdRowDataLevel2(row_level2.id);
                         for (let data of row_level2.data) {
-                            data.timeStamp = parseFloat(data.timeStamp);
+                            data.timestamp = parseFloat(data.timestamp);
                             data.value = parseFloat(data.value);
                         }
                         if (row_level2.data.length > headerData.length) { headerData = row_level2.data }
@@ -125,7 +125,7 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
                         for (let row_level3 of row_level2.rows) {
                             row_level3.data = await RowDataLevel3ValueService.getDataByIdRowDataLevel3(row_level3.id);
                             for (let data of row_level3.data) {
-                                data.timeStamp = parseFloat(data.timeStamp);
+                                data.timestamp = parseFloat(data.timestamp);
                                 data.value = parseFloat(data.value);
                             }
                             row_level3.data = convertToArrayHighChartData(row_level3.data);
@@ -140,7 +140,7 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
                 }
                 let header = [];
                 for (let item of headerData) {
-                    header.push(ToolDate.Convert_TimeStamp_To_MMYYYY(parseFloat(item.timeStamp)));
+                    header.push(ToolDate.Convert_TimeStamp_To_MMYYYY(parseFloat(item.timestamp)));
                 }
                 itemTable.header = header;
 
@@ -160,7 +160,7 @@ let convertToArrayHighChartData = (data) => {
     let result = [];
     for (let item of data) {
         let arrItem = [];
-        arrItem.push(item.timeStamp);
+        arrItem.push(item.timestamp);
         arrItem.push(item.value);
         result.push(arrItem);
     }
@@ -199,7 +199,7 @@ let getTableByIDMacroType2 = (id_macro_type, valueType) => {
                             },
                             {
                                 model: db.Row_Data_Level1_Value, as: 'data',
-                                attributes: ['timeStamp', 'value'],
+                                attributes: ['timestamp', 'value'],
                             },
 
                             {
@@ -215,7 +215,7 @@ let getTableByIDMacroType2 = (id_macro_type, valueType) => {
                                     },
                                     {
                                         model: db.Row_Data_Level2_Value, as: 'data',
-                                        attributes: ['timeStamp', 'value'],
+                                        attributes: ['timestamp', 'value'],
                                     },
                                     {
                                         model: db.Row_Data_Level3,
@@ -248,12 +248,12 @@ let getTableByIDMacroType2 = (id_macro_type, valueType) => {
                     ],
                     [
                         { model: db.Row_Data_Level1, as: 'rows' }, { model: db.Row_Data_Level1_Value, as: 'data' },
-                        'timeStamp',
+                        'timestamp',
                         'DESC'
                     ],
                     [
                         { model: db.Row_Data_Level1, as: 'rows' }, { model: db.Row_Data_Level2, as: 'rows' }, { model: db.Row_Data_Level2_Value, as: 'data' },
-                        'timeStamp',
+                        'timestamp',
                         'DESC'
                     ],
 

@@ -23,8 +23,8 @@ let getMarketRatioByCode = (code) => {
 
             for (let i = 0; i < marketRatios.length; i++) {
                 //let yyyymmdd = ToolDate.Convert_TimeStamp_To_YYYYMMDD(marketRatios[i].timeStamp);
-                pe.push({ time: marketRatios[i].timeStamp, value: marketRatios[i].pe });
-                pb.push({ time: marketRatios[i].timeStamp, value: marketRatios[i].pb });
+                pe.push({ time: marketRatios[i].timestamp, value: marketRatios[i].pe });
+                pb.push({ time: marketRatios[i].timestamp, value: marketRatios[i].pb });
             }
 
             let result = {};

@@ -6,19 +6,14 @@ let getDataByIdRowDataLevel3 = (id_row_data_level3) => {
         try {
             let datas = db.Row_Data_Level3_Value.findAll({
                 where: { id_row_data_level3: id_row_data_level3 },
-                attributes: ['timeStamp', 'value'],
+                attributes: ['timestamp', 'value'],
                 order: [
-                    ['timeStamp', 'DESC']
+                    ['timestamp', 'DESC']
                 ],
                 raw: false,
                 nest: true,
             });
-            // if (datas!=null) {
-            //     for (let data of datas) {
-            //         data.timeStamp = parseFloat(data.timeStamp);
-            //         data.value = parseFloat(data.value);
-            //     }
-            // }
+
 
             resolve(datas);
         } catch (e) {

@@ -7,7 +7,7 @@ let getAllBusiness2 = () => {
         try {
 
             const business2 = await db.sequelize.query(
-                "Select id,englishName,vietnameseName from business2",
+                "Select id,name_vi,name_en from business2s",
                 {
                     type: db.sequelize.QueryTypes.SELECT
                 }

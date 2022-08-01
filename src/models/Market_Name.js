@@ -22,14 +22,15 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
         },
-
-        englishName: DataTypes.STRING,
-        vietnameseName: DataTypes.STRING,
+        key_id: DataTypes.STRING,
+        name_en: DataTypes.STRING,
+        name_vi: DataTypes.STRING,
 
 
     }, {
         sequelize,
         modelName: 'Market_Name',
+        tableName:'market_names'
     });
     return Market_Name;
 };

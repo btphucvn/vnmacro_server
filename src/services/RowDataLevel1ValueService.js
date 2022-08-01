@@ -6,9 +6,9 @@ let getDataByIdRowDataLevel1 = (id_row_data_level1) => {
         try {
             let datas = db.Row_Data_Level1_Value.findAll({
                 where: { id_row_data_level1: id_row_data_level1},
-                attributes: ['timeStamp', 'value'],
+                attributes: ['timestamp', 'value'],
                 order:[
-                    ['timeStamp','DESC']
+                    ['timestamp','DESC']
                 ],
                 raw: false,
                 nest: true,

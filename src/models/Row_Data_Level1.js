@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association herenpx sequelize-cli db:migrate
-            Row_Data_Level1.belongsTo(models.Row_Data_Level1, { foreignKey: 'idTable'});
+            Row_Data_Level1.belongsTo(models.Row_Data_Level1, { foreignKey: 'id_table'});
             Row_Data_Level1.hasMany(models.Row_Data_Level1_Value, { foreignKey: 'id_row_data_level1', as: 'data' });
 
             Row_Data_Level1.hasMany(models.Row_Data_Level2, { foreignKey: 'id_row_data_level1', as: 'rows' });
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         unit: DataTypes.STRING,
         stt: DataTypes.INTEGER,
 
-        idTable: DataTypes.INTEGER,
+        id_table: DataTypes.INTEGER,
 
     }, {
         sequelize,

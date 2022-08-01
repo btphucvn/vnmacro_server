@@ -15,6 +15,7 @@ let getAllSelect= async(req,res)=>{
         })
     }
 }
+
 let getFinishedProfitPlan= async(req,res)=>{
     try{
         let data = await StockMacroService.getFinishedProfitPlan(req.query.id);

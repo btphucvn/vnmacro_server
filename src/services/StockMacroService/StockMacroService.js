@@ -18,6 +18,7 @@ let getAllSelect = () => {
 
     })
 }
+
 let getFinishedProfitPlan = (id) => {
     return new Promise(async (resolve, reject) => {
         try {

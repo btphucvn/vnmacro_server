@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
             // define association herenpx sequelize-cli db:migrate
 
             Macro_Type.hasMany(models.Table, { foreignKey: 'id_macro_type', as: 'value_types' });
+            Macro_Type.belongsTo(models.Macro, { foreignKey: 'key_id_macro',targetKey:'key_id'});
+            Macro_Type.hasOne(models.AllKey,{foreignKey:'key_id',sourceKey:'key_id',as: 'names'})
 
         }
     };
@@ -28,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'Macro_Type',
-        tableName: 'macro_types'
+        tableName: 'macro_types',
+        timestamps:false
     });
     return Macro_Type;
 };

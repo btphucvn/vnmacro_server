@@ -11,10 +11,13 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association herenpx sequelize-cli db:migrate
-            AllKey.belongsTo(models.Row_Data_Level1, { foreignKey: 'key_id',targetKey:'key_id'});
-            AllKey.belongsTo(models.Row_Data_Level2, { foreignKey: 'key_id',targetKey:'key_id'});
-            AllKey.belongsTo(models.Row_Data_Level3, { foreignKey: 'key_id',targetKey:'key_id'});
-            AllKey.belongsTo(models.Table, { foreignKey: 'key_id',targetKey:'key_id'});
+            AllKey.belongsTo(models.Row_Data_Level1, { foreignKey: 'key_id', targetKey: 'key_id' });
+            AllKey.belongsTo(models.Row_Data_Level2, { foreignKey: 'key_id', targetKey: 'key_id' });
+            AllKey.belongsTo(models.Row_Data_Level3, { foreignKey: 'key_id', targetKey: 'key_id' });
+            AllKey.belongsTo(models.Macro_Type, { foreignKey: 'key_id', targetKey: 'key_id' });
+
+            AllKey.belongsTo(models.Macro, { foreignKey: 'key_id', targetKey: 'key_id' });
+            AllKey.belongsTo(models.Table, { foreignKey: 'key_id', targetKey: 'key_id' });
 
         }
     };
@@ -32,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'AllKey',
-        tableName: 'allkeys'
+        tableName: 'allkeys',
+        timestamps: false
     });
     return AllKey;
 };

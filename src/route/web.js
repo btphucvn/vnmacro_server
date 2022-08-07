@@ -8,6 +8,7 @@ import MarketNameController from "../controllers/MarketNameController";
 import StockMacroController from "../controllers/StockMacroController/StockMacroController";
 import MacroTypeController from "../controllers/MacroTypeController";
 import MacroController from "../controllers/MacroController";
+import MacroDataController from "../controllers/MacroDataController";
 
 import TableController from "../controllers/TableController";
 
@@ -37,6 +38,8 @@ let initWebRoutes = (app) => {
     router.get("/api/get-value-type-by-keyidmacrotype", MacroTypeController.getValueTypeByKeyIDMacro);
 
     router.get("/api/get-all-macro", MacroController.getAllMacro);
+
+    router.get("/api/get-macro-data", MacroDataController.getMacroData);
 
 
     return app.use("/", router);

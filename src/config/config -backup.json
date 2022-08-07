@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "postgres",
-    "password": "Deptrai305@",
-    "database": "postgres",
-    "host": "127.0.0.1",
+    "password": "Thanhphuc123@",
+    "database": "dbvnmacro",
+    "host": "localhost",
     "port": "5432",
     "dialect": "postgres",
     "logging": false,
@@ -26,16 +26,11 @@
     }
   },
   "production": {
-    "username": "postgres",
-    "password": "Deptrai305@",
-    "database": "postgres",
+    "username": "root",
+    "password": null,
+    "database": "database_production",
     "host": "127.0.0.1",
-    "port": "5432",
-    "dialect": "postgres",
-    "logging": false,
-    "timezone": "+07:00",
-    "query": {
-      "raw": true
-    }
+    "port": "3307",
+    "dialect": "mysql"
   }
 }

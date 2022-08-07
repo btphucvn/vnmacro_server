@@ -3,6 +3,8 @@ import db from '../models/index';
 import RowDataLevel3ValueService from '../services/RowDataLevel3ValueService';
 import RowDataLevel2ValueService from '../services/RowDataLevel2ValueService';
 import RowDataLevel1ValueService from '../services/RowDataLevel1ValueService';
+import YAxisService from '../services/YAxisService';
+
 import MacroTypeService from "../services/MacroTypeService";
 
 import ToolDate from '../utils/ToolDate'
@@ -86,11 +88,7 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
                         'id',
                         'asc'
                     ],
-
-
-
                 ],
-
                 raw: false,
                 nest: true,
             });
@@ -104,6 +102,7 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
                 //vào row level1
                 for (let row_level1 of itemTable.rows) {
                     //vào row level2
+                    row_level1.yaxis = await YAxisService.getYAxisByUnit(row_level1.unit);
                     row_level1.data = await RowDataLevel1ValueService.getDataByIdRowDataLevel1(row_level1.id);
                     for (let data of row_level1.data) {
                         data.timestamp = parseFloat(data.timestamp);
@@ -113,7 +112,7 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
                     row_level1.data = convertToArrayHighChartData(row_level1.data);
                     let childRowLevel1 = [];
                     for (let row_level2 of row_level1.rows) {
-
+                        row_level2.yaxis = await YAxisService.getYAxisByUnit(row_level2.unit);
                         row_level2.data = await RowDataLevel2ValueService.getDataByIdRowDataLevel2(row_level2.id);
                         for (let data of row_level2.data) {
                             data.timestamp = parseFloat(data.timestamp);
@@ -123,19 +122,20 @@ let getTableByKeyIDMacroType = (key_id_macro_type, value_type) => {
                         row_level2.data = convertToArrayHighChartData(row_level2.data);
                         //vào row level3
                         for (let row_level3 of row_level2.rows) {
+                            row_level3.yaxis = await YAxisService.getYAxisByUnit(row_level3.unit);
                             row_level3.data = await RowDataLevel3ValueService.getDataByIdRowDataLevel3(row_level3.id);
                             for (let data of row_level3.data) {
                                 data.timestamp = parseFloat(data.timestamp);
                                 data.value = parseFloat(data.value);
                             }
                             row_level3.data = convertToArrayHighChartData(row_level3.data);
-                            row_level3.idChild = itemTable.key_id + "_" + row_level1.key_id + "_" + row_level2.key_id + "_" + row_level3.key_id;
+                            row_level3.idChild = itemTable.key_id + "_" + row_level1.key_id + "_" + row_level2.key_id + "_" + row_level3.key_id+"_"+value_type;
                             childRowLevel1.push(row_level3.idChild);
                         }
-                        row_level2.idChild = itemTable.key_id + "_" + row_level1.key_id + "_" + row_level2.key_id;
+                        row_level2.idChild = itemTable.key_id + "_" + row_level1.key_id + "_" + row_level2.key_id+"_"+value_type;
                         childRowLevel1.push(row_level2.idChild);
                     }
-                    row_level1.idChild = itemTable.key_id + "_" + row_level1.key_id;
+                    row_level1.idChild = itemTable.key_id + "_" + row_level1.key_id+"_"+value_type;
                     row_level1.childRow = childRowLevel1;
                 }
                 let header = [];

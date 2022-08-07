@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
             // define association herenpx sequelize-cli db:migrate
             Table.hasMany(models.Row_Data_Level1, { foreignKey: 'id_table', as: 'rows' });
 
-            Table.hasOne(models.AllKey,{foreignKey:'key_id',sourceKey:'key_id',as: 'names'});
-            
+            Table.hasOne(models.AllKey, { foreignKey: 'key_id', sourceKey: 'key_id', as: 'names' });
+
             Table.belongsTo(models.Macro_Type, { foreignKey: 'id_macro_type' });
 
         }
@@ -29,8 +29,9 @@ module.exports = (sequelize, DataTypes) => {
         key_id: DataTypes.STRING,
         stt: DataTypes.INTEGER,
         value_type: DataTypes.STRING,
+        unit: DataTypes.STRING,
         date_type: DataTypes.STRING,
-        id_macro_type:DataTypes.INTEGER,
+        id_macro_type: DataTypes.INTEGER,
 
     }, {
         sequelize,

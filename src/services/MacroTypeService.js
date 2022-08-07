@@ -6,12 +6,20 @@ let getMacroTypeByKeyIDMacro = (key_id_macro) => {
     return new Promise(async (resolve, reject) => {
         try {
 
-            const { Op } = require("sequelize");
-
             const macroTypes = await db.Macro_Type.findAll({
                 where: {
                     key_id_macro: key_id_macro,
                 },
+                include: [
+                    {
+                        model: db.AllKey,
+                        as: 'names',
+                        attributes: {
+                            exclude: ['createdAt', 'updatedAt'],
+
+                        },
+                    }
+                ],
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
                 },
@@ -19,6 +27,7 @@ let getMacroTypeByKeyIDMacro = (key_id_macro) => {
                     ['stt', 'ASC'],
                 ],
                 raw: true,
+                nest:true,
             });
 
             let result = {};
@@ -35,8 +44,6 @@ let getMacroTypeByKeyIDMacro = (key_id_macro) => {
 let getValueTypeByKeyIDMacro = (key_id_macro) => {
     return new Promise(async (resolve, reject) => {
         try {
-
-
             const macroTypes = await db.Macro_Type.findAll({
                 where: {
                     key_id: key_id_macro,
@@ -61,9 +68,18 @@ let getValueTypeByKeyIDMacro = (key_id_macro) => {
             let result = {};
             result.errCode = 0;
             result.data = [];
+            let tmpResult = []
+            const arrValueTypeSTT= ["Value","MoM","QoQ","YoY","YoY Ave"];
             for (let macroType of macroTypes) {
                 for (let valueType of macroType.value_types) {
-                    result.data.push(valueType.value_type)
+                    tmpResult.push(valueType.value_type)
+                }
+            }
+            for(let valueType of arrValueTypeSTT){
+                for(let item of tmpResult){
+                    if(item==valueType){
+                        result.data.push(valueType);
+                    }
                 }
             }
             result.data = result.data.filter((v, i, a) => a.indexOf(v) === i);

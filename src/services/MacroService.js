@@ -24,6 +24,20 @@ let getAllMacro = () => {
                             }
                         ]
                     },
+
+                ],
+                order: [
+                    [
+                        { model: db.Macro_Type, as: 'macro_types' },
+                        'stt',
+                        'ASC'
+                    ],
+
+                    [
+                        'id'
+                        ,'ASC'
+                    ]
+
                 ],
                 raw: false,
                 nest: true,

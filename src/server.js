@@ -10,7 +10,7 @@ require('dotenv').config();
 
 let app = express();
 
-//app.use(cors({ origin: true }));
+app.use(cors({ origin: true }));
 
 // Add headers before the routes are defined
 app.use(function (req, res, next) {

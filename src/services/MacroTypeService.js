@@ -27,7 +27,7 @@ let getMacroTypeByKeyIDMacro = (key_id_macro) => {
                     ['stt', 'ASC'],
                 ],
                 raw: true,
-                nest:true,
+                nest: true,
             });
 
             let result = {};
@@ -69,15 +69,15 @@ let getValueTypeByKeyIDMacro = (key_id_macro) => {
             result.errCode = 0;
             result.data = [];
             let tmpResult = []
-            const arrValueTypeSTT= ["Value","MoM","QoQ","YoY","YoY Ave"];
+            const arrValueTypeSTT = ["Value", "MoM", "QoQ", "YoY", "YoY Ave", "Q", "YTD", "TTM"];
             for (let macroType of macroTypes) {
                 for (let valueType of macroType.value_types) {
                     tmpResult.push(valueType.value_type)
                 }
             }
-            for(let valueType of arrValueTypeSTT){
-                for(let item of tmpResult){
-                    if(item==valueType){
+            for (let valueType of arrValueTypeSTT) {
+                for (let item of tmpResult) {
+                    if (item == valueType) {
                         result.data.push(valueType);
                     }
                 }

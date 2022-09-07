@@ -15,6 +15,13 @@ class ToolDate {
         var time = month + '-' + year;
         return time;
     }
+    static convert_MMYYYY_To_Timestamp(strMMYYYY){
+        strMMYYYY = strMMYYYY.replace("-","/");
+        strMMYYYY = "01/"+strMMYYYY+" 00:00:00";
+        var datum = Date.parse(strMMYYYY);
+        
+        return datum;
+     }
 }
 
 export default ToolDate;

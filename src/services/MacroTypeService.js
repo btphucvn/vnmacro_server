@@ -10,16 +10,6 @@ let getMacroTypeByKeyIDMacro = (key_id_macro) => {
                 where: {
                     key_id_macro: key_id_macro,
                 },
-                include: [
-                    {
-                        model: db.AllKey,
-                        as: 'names',
-                        attributes: {
-                            exclude: ['createdAt', 'updatedAt'],
-
-                        },
-                    }
-                ],
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
                 },

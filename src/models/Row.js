@@ -3,7 +3,7 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class Table extends Model {
+    class Row extends Model {
         /**
          * Helper method for defining associations.
          * This method is not a part of Sequelize lifecycle.
@@ -11,16 +11,13 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association herenpx sequelize-cli db:migrate
-            //Table.hasMany(models.Row_Data_Level1, { foreignKey: 'id_table', as: 'rows' });
-            Table.hasMany(models.Row, { foreignKey: 'id_table', as: 'rows' });
-
-            Table.hasOne(models.AllKey, { foreignKey: 'key_id', sourceKey: 'key_id', as: 'names' });
-
-            Table.belongsTo(models.Macro_Type, { foreignKey: 'id_macro_type' });
+            Row.hasOne(models.AllKey,{foreignKey:'key_id',sourceKey:'key_id',as: 'names'})
+            Row.hasMany(models.Row_Value, { foreignKey: 'id_row', as: 'data' });
+            Row.belongsTo(models.Table, { foreignKey: 'id_table'});
 
         }
     };
-    Table.init({
+    Row.init({
 
         id: {
             type: DataTypes.INTEGER,
@@ -29,18 +26,17 @@ module.exports = (sequelize, DataTypes) => {
         },
         key_id: DataTypes.STRING,
         name: DataTypes.STRING,
-        stt: DataTypes.INTEGER,
-        value_type: DataTypes.STRING,
+        level:DataTypes.INTEGER,
         unit: DataTypes.STRING,
-        date_type: DataTypes.STRING,
-        id_macro_type: DataTypes.INTEGER,
-        table_type: DataTypes.STRING,
+        stt: DataTypes.INTEGER,
+        id_table: DataTypes.INTEGER,
+        id_string: DataTypes.STRING,
+        yaxis: DataTypes.INTEGER,
 
     }, {
         sequelize,
-        modelName: 'Table',
-        tableName: 'tables',
-
+        modelName: 'Row',
+        tableName: 'rows',
     });
-    return Table;
+    return Row;
 };

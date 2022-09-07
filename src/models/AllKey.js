@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 
             AllKey.belongsTo(models.Macro, { foreignKey: 'key_id', targetKey: 'key_id' });
             AllKey.belongsTo(models.Table, { foreignKey: 'key_id', targetKey: 'key_id' });
+            AllKey.belongsTo(models.Row, { foreignKey: 'key_id', targetKey: 'key_id' });
 
         }
     };

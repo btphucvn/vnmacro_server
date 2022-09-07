@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         key_id: DataTypes.STRING,
 
-        title: DataTypes.STRING,
+        name: DataTypes.STRING,
         id_detail: DataTypes.INTEGER,
         key_id_macro: DataTypes.STRING,
         stt: DataTypes.INTEGER,

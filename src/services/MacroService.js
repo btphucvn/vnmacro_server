@@ -9,22 +9,9 @@ let getAllMacro = () => {
             const macros = await db.Macro.findAll({
                 include: [
                     {
-                        model: db.AllKey,
-                        as: 'names',
-                        attributes: ['name_vi'],
-                    },
-                    {
                         model: db.Macro_Type,
                         as: 'macro_types',
-                        include: [
-                            {
-                                model: db.AllKey,
-                                as: 'names',
-                                attributes: ['name_vi'],
-                            }
-                        ]
                     },
-
                 ],
                 order: [
                     [

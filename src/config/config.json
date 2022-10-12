@@ -3,7 +3,7 @@
     "username": "postgres",
     "password": "Deptrai305@",
     "database": "postgres",
-    "host": "14.225.192.11",
+    "host": "127.0.0.1",
     "port": "5432",
     "dialect": "postgres",
     "logging": false,

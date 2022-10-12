@@ -2,9 +2,9 @@ const { Sequelize } = require('sequelize');
 
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('dbvnmacro', 'postgres', 'Thanhphuc123@', {
+const sequelize = new Sequelize('postgres', 'postgres', 'Deptrai305@', {
     host: 'localhost',
-    port: '3308',
+    port: '5432',
     dialect: 'postgres',
     logging: false
 });

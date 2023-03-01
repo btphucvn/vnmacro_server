@@ -18,10 +18,10 @@ app.use(function (req, res, next) {
     // Website you wish to allow to connect
     //console.log(process.env.URL_REACT);
     //console.log(process);
-    const allowedOrigins = [process.env.URL_REACT, 'http://titfin.com', 'https://titfin.com'];
+    const allowedOrigins = [process.env.URL_REACT, 'http://titfin.com', 'https://titfin.com', "https://localhost:3000", "http://localhost:3000"];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
-         res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Access-Control-Allow-Origin', origin);
     }
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
